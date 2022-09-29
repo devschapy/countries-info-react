@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .country-info{
+        @apply bg-gray-300 font-bold
+    }
+}

@@ -3,18 +3,18 @@ import axios from "axios";
 import Table from "./table.component";
 
 const FetchData = () => {
-  const [countrys, setCountrys] = useState([]);
+    const [countrys, setCountrys] = useState([]);
 
-  useEffect(() => {
-    const url = "https://restcountries.com/v3.1/all ";
+    useEffect(() => {
+        const url = "https://restcountries.com/v3.1/all ";
 
-    axios
-      .get(url)
-      .then((res) => setCountrys(res.data))
-      .catch((error) => console.log(error));
-  }, []);
+        axios
+            .get(url)
+            .then((res) => setCountrys(res.data))
+            .catch((error) => console.log(error));
+    }, []);
 
-  return <Table countrys={countrys}/>
+    return <Table countrys={countrys} />;
 };
 
 export default FetchData;

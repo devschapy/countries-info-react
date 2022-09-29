@@ -5,7 +5,7 @@ import { WorldCountry, ErrorPage } from "../countries";
 function AppComponent() {
   return (
     <Routes>
-      <Route path="/worldcountry" element={<WorldCountry />} />
+      <Route path="/countries" element={<WorldCountry />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
