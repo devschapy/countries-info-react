@@ -1,10 +1,37 @@
 import React from "react";
-import Language from "./Language";
+import { ObjKeysFun } from "./Language";
+import { Icon } from "@iconify/react";
 
-const Table = ({ countrys }) => {
+const Table = ({ countrys, searchTerm, onChangeHandler, submitHandler }) => {
+    console.log(searchTerm);
     return (
-        <div>
-            <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4 text-center bg-gray-300 rounded-lg">
+        <>
+            <form onSubmit={submitHandler} className="pb-6">
+                <div className="flex justify-center gap-1">
+                    <div className="relative w-6/12">
+                        <label htmlFor="search">
+                            <Icon
+                                className="searchIcon"
+                                icon="bi:search-heart"
+                            />
+                        </label>
+                        <input
+                            className="inputStyle"
+                            placeholder="Search for anything..."
+                            type="text"
+                            id="search"
+                            name="search"
+                            value={searchTerm}
+                            onChange={onChangeHandler}
+                        />
+                    </div>
+                    <button className="btn" type="submit">
+                        Search
+                    </button>
+                </div>
+            </form>
+
+            <div className="countryHeaderDiv">
                 <p className="country-info">Flag Photo</p>
                 <p className="country-info">Country Name & Code</p>
                 <p className="country-info">Capital Name</p>
@@ -20,13 +47,12 @@ const Table = ({ countrys }) => {
 
             <div>
                 {countrys.map((country, index) => {
-                    for (const key in country.currencies) {
-                        console.log(`${key}: ${country.currencies[key].name}`);
-                        console.log(`${key}: ${country.currencies[key].symbol}`);
-
-                    }
-
-                   
+                    let curncKeys = [];
+                    let currencies = country.currencies;
+                    curncKeys = ObjKeysFun(currencies);
+                    // for (let key in currencies) {
+                    //     curncKeys.push(currencies[key]);
+                    // }
 
                     let languages = [];
                     if (
@@ -35,6 +61,9 @@ const Table = ({ countrys }) => {
                     ) {
                         languages = country.languages;
                     }
+                    let langKeys = [];
+                    langKeys = ObjKeysFun(languages);
+
                     return (
                         <div
                             className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4 text-center bg-gray-200 mb-10 rounded-md"
@@ -51,17 +80,22 @@ const Table = ({ countrys }) => {
                             </div>
                             <p>{country.capital}</p>
                             <div className="hidden md:block">
-                                {/* {
-                                    currencies.map((item, idx) =>(
-                                        console.log(item)
-                                    ))
-                                } */}
-                                <h1>tk</h1>
-                                {/* <span>{country.currencies.BDT}</span> */}
-                                {/* <span className="text-main">{country.currencies.BDT.symbol}</span> */}
+                                {curncKeys.map((item, idx) => (
+                                    <div key={idx + 1}>
+                                        <p key={idx}>{item.name}</p>
+                                        <p
+                                            key={idx + 121}
+                                            className="text-main"
+                                        >
+                                            {item.symbol}
+                                        </p>
+                                    </div>
+                                ))}
                             </div>
                             <div className="hidden lg:block">
-                                <Language langObj={languages} />
+                                {langKeys.map((val, index) => (
+                                    <p key={index}>{val}</p>
+                                ))}
                             </div>
                             <p className="hidden lg:block">
                                 {country.population}
@@ -82,7 +116,7 @@ const Table = ({ countrys }) => {
                     );
                 })}
             </div>
-        </div>
+        </>
     );
 };
 

@@ -1,13 +1,14 @@
-import React from "react";
+// import React from "react";
 
-export default function Language({ langObj }) {
-    const langs = [];
+export const ObjKeysFun = (myObj) => {
+    const keyValues = [];
+    // console.log(myObj);
 
-    for (let key in langObj) {
-        langs.push(langObj[key]);
-    }
-
-    let langEl = langs.map((val, index) => <p key={index}>{val}</p>);
-
-    return <>{langEl}</>;
+    for (let key in myObj) {
+        keyValues.push(myObj[key]);
+    }   
+    return keyValues;
+    // let langEl = keyValues.map((val, index) => <p key={index}>{val}</p>);
+    // { langObj }
+    // return <>{langEl}</>;
 }
