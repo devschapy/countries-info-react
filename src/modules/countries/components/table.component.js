@@ -1,5 +1,5 @@
 import React from "react";
-import { ObjKeysFun } from "./Language";
+import { ObjKeysFun } from "./ObjKeysFun";
 import { Icon } from "@iconify/react";
 
 const Table = ({ countrys, searchTerm, onChangeHandler, submitHandler }) => {
