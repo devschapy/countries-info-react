@@ -17,7 +17,7 @@ const FetchData = () => {
     };
 
     useEffect(() => {
-        const url = `https://restcountries.com/v3.1/name/${searchTerm}`;
+        const url = `https://restcountries.com/v3.1/all`;
 
         axios
             .get(url)

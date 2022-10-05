@@ -1,6 +1,6 @@
 // import React from "react";
 
-export const ObjKeysFun = (myObj) => {
+export const ObjKeys = (myObj) => {
     const keyValues = [];
     // console.log(myObj);
 

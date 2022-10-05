@@ -1,9 +1,9 @@
 import React from "react";
-import { ObjKeysFun } from "./ObjKeysFun";
+import { Link } from "react-router-dom";
+import { ObjKeys } from "./ObjKeysFun";
 import { Icon } from "@iconify/react";
 
 const Table = ({ countrys, searchTerm, onChangeHandler, submitHandler }) => {
-    console.log(searchTerm);
     return (
         <>
             <form onSubmit={submitHandler} className="pb-6">
@@ -21,7 +21,7 @@ const Table = ({ countrys, searchTerm, onChangeHandler, submitHandler }) => {
                             type="text"
                             id="search"
                             name="search"
-                            value={searchTerm}
+                            // value={searchTerm}
                             onChange={onChangeHandler}
                         />
                     </div>
@@ -46,75 +46,110 @@ const Table = ({ countrys, searchTerm, onChangeHandler, submitHandler }) => {
             </div>
 
             <div>
-                {countrys.map((country, index) => {
-                    let curncKeys = [];
-                    let currencies = country.currencies;
-                    curncKeys = ObjKeysFun(currencies);
-                    // for (let key in currencies) {
-                    //     curncKeys.push(currencies[key]);
-                    // }
+                {countrys
+                    .filter((val) => {
+                        if (searchTerm === "") {
+                            return val;
+                        } else if (
+                            val.name.common
+                                .toLowerCase()
+                                .includes(searchTerm.toLowerCase())
+                        ) {
+                            return val;
+                        }
+                    })
+                    .map((country, index) => {
+                        const { cca2 } = country;
+                        let currencies = country.currencies;
+                        let languages = [];
+                        let langKeys = [];
+                        let curncKeys = [];
 
-                    let languages = [];
-                    if (
-                        country["languages"] !== undefined &&
-                        country.languages !== null
-                    ) {
-                        languages = country.languages;
-                    }
-                    let langKeys = [];
-                    langKeys = ObjKeysFun(languages);
+                        if (
+                            country["languages"] !== undefined &&
+                            country.languages !== null
+                        ) {
+                            languages = country.languages;
+                        }
 
-                    return (
-                        <div
-                            className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4 text-center bg-gray-200 mb-10 rounded-md"
-                            key={index}
-                        >
-                            <img
-                                className="h-full"
-                                src={country.flags.png}
-                                alt=""
-                            />
-                            <div>
-                                <p>{country.name.common}</p>
-                                <p className="text-main">{country.cca2}</p>
-                            </div>
-                            <p>{country.capital}</p>
-                            <div className="hidden md:block">
-                                {curncKeys.map((item, idx) => (
-                                    <div key={idx + 1}>
-                                        <p key={idx}>{item.name}</p>
-                                        <p
-                                            key={idx + 121}
-                                            className="text-main"
-                                        >
-                                            {item.symbol}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="hidden lg:block">
-                                {langKeys.map((val, index) => (
-                                    <p key={index}>{val}</p>
-                                ))}
-                            </div>
-                            <p className="hidden lg:block">
-                                {country.population}
-                            </p>
-                            <p className="hidden lg:block">{country.area}</p>
-                            <div className="hidden md:block">
-                                <p>{country.region}</p>
-                                <p className="text-main bloc">
-                                    {country.subregion}
+                        langKeys = ObjKeys(languages);
+                        curncKeys = ObjKeys(currencies);
+
+                        const langElements = langKeys.map((val, index) => (
+                            <p key={index}>{val}</p>
+                        ));
+
+                        //-----------==>
+                        let countryDetails = {
+                            name: `${country.name.common}`,
+                            capital: `${country.capital}`,
+                            cntyCode: `${country.cca2}`,
+                            flags: `${country.flags.png}`,
+                            curncKeys: `${curncKeys}`,
+                            langKeys: `${langKeys}`,
+                            population: `${country.population}`,
+                            area: `${country.area}`,
+                            region: `${country.region}`,
+                            subregion: `${country.subregion}`,
+                            // language: {langElements},
+
+                        };
+
+                        return (
+                            <div
+                                className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4 text-center bg-gray-200 mb-10 rounded-md"
+                                key={index}
+                            >
+                                <img
+                                    className="h-full"
+                                    src={country.flags.png}
+                                    alt=""
+                                />
+                                <div>
+                                    <p>{country.name.common}</p>
+                                    <p className="text-main">{cca2}</p>
+                                </div>
+                                <p>{country.capital}</p>
+                                <div className="hidden md:block">
+                                    {curncKeys.map((item, idx) => (
+                                        <div key={idx}>
+                                            <p key={idx + 1}>{item.name}</p>
+                                            <p
+                                                key={idx + 121}
+                                                className="text-main"
+                                            >
+                                                {item.symbol}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="hidden lg:block">
+                                    {langElements}
+                                </div>
+                                <p className="hidden lg:block">
+                                    {country.population}
                                 </p>
+                                <p className="hidden lg:block">
+                                    {country.area}
+                                </p>
+                                <div className="hidden md:block">
+                                    <p>{country.region}</p>
+                                    <p className="text-main bloc">
+                                        {country.subregion}
+                                    </p>
+                                </div>
+                                <div className="w-full h-full flex justify-center items-center">
+                                    <Link
+                                        className="bg-gray-300 px-6 h-10 leading-10 font-bold rounded-md hover:bg-main shadow-md"
+                                        to={cca2}
+                                        state={countryDetails}
+                                    >
+                                        More...
+                                    </Link>
+                                </div>
                             </div>
-                            <div className="w-full h-full flex justify-center items-center">
-                                <button className="bg-gray-300 px-6 h-10 font-bold rounded-md hover:bg-main shadow-md">
-                                    More...
-                                </button>
-                            </div>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
             </div>
         </>
     );
