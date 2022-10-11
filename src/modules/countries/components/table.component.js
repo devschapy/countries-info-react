@@ -81,17 +81,16 @@ const Table = ({ countrys, searchTerm, onChangeHandler, submitHandler }) => {
 
                         //-----------==>
                         let countryDetails = {
-                            name: `${country.name.common}`,
-                            capital: `${country.capital}`,
-                            cntyCode: `${country.cca2}`,
-                            flags: `${country.flags.png}`,
-                            curncKeys: `${curncKeys}`,
-                            langKeys: `${langKeys}`,
-                            population: `${country.population}`,
-                            area: `${country.area}`,
-                            region: `${country.region}`,
-                            subregion: `${country.subregion}`,
-                            // language: {langElements},
+                            name: country.name.common,
+                            capital: country.capital,
+                            cntyCode: country.cca2,
+                            flags: country.flags.png,
+                            curncKeys,
+                            langKeys,
+                            population: country.population,
+                            area: country.area,
+                            region: country.region,
+                            subregion: country.subregion,
 
                         };
 

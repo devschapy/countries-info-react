@@ -6,8 +6,8 @@ import CountryHome from "../countries/components/country.home";
 function AppComponent() {
   return (
     <Routes>
-      <Route path="/countries" element={<WorldCountry />} />
-      <Route path="/countries/:title" element={<CountryHome />} />
+      <Route path="/" element={<WorldCountry />} />
+      <Route path="/:title" element={<CountryHome />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
