@@ -57,8 +57,10 @@ const Table = ({ countrys, searchTerm, onChangeHandler, submitHandler }) => {
                         ) {
                             return val;
                         }
+                        return val
                     })
                     .map((country, index) => {
+                        console.log(country);
                         const { cca2 } = country;
                         let currencies = country.currencies;
                         let languages = [];
