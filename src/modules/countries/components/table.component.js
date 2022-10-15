@@ -21,7 +21,7 @@ const Table = ({ countrys, searchTerm, onChangeHandler, submitHandler }) => {
                             type="text"
                             id="search"
                             name="search"
-                            // value={searchTerm}
+                            value={searchTerm}
                             onChange={onChangeHandler}
                         />
                     </div>
@@ -46,20 +46,7 @@ const Table = ({ countrys, searchTerm, onChangeHandler, submitHandler }) => {
             </div>
 
             <div>
-                {countrys
-                    .filter((val) => {
-                        if (searchTerm === "") {
-                            return val;
-                        } else if (
-                            val.name.common
-                                .toLowerCase()
-                                .includes(searchTerm.toLowerCase())
-                        ) {
-                            return val;
-                        }
-                        return val
-                    })
-                    .map((country, index) => {
+                {countrys.map((country, index) => {
                         console.log(country);
                         const { cca2 } = country;
                         let currencies = country.currencies;
@@ -89,6 +76,7 @@ const Table = ({ countrys, searchTerm, onChangeHandler, submitHandler }) => {
                             flags: country.flags.png,
                             curncKeys,
                             langKeys,
+                            maps: country.maps,
                             population: country.population,
                             area: country.area,
                             region: country.region,

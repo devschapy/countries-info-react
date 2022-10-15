@@ -5,7 +5,6 @@ import Table from "./table.component";
 const FetchData = () => {
     const [countrys, setCountrys] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [submiting, setSubmiting] = useState("");
 
     const onChangeHandler = (e) => {
         setSearchTerm(e.target.value);
@@ -13,18 +12,35 @@ const FetchData = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        setSubmiting(searchTerm);
+        const newFilterCountryItem = countrys.filter((val) => {
+            if (searchTerm === "") {
+                return val;
+            } else if (
+                val.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+                return val;
+            }
+        });
+        setCountrys(newFilterCountryItem);
     };
 
+    const fetchCountryList = async () => {
+        try {
+            const url = `https://restcountries.com/v3.1/all`;
+            const { data } = await axios.get(url);
+            setCountrys(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    if(searchTerm === ''){
+        fetchCountryList();
+
+    }
+
     useEffect(() => {
-        const url = `https://restcountries.com/v3.1/all`;
-
-        axios
-            .get(url)
-            .then((res) => setCountrys(res.data))
-            .catch((error) => console.log(error));
-    }, [submiting]);
-
+        fetchCountryList();
+    }, []);
 
     return (
         <Table
