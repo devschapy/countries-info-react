@@ -1,42 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ObjKeys } from "./ObjKeysFun";
-import { Icon } from "@iconify/react";
 
-const Table = ({ countrys, searchTerm, onChangeHandler, submitHandler }) => {
+const Table = ({ countrys }) => {
     return (
         <>
-            <form onSubmit={submitHandler} className="pb-6">
-                <div className="flex justify-center gap-1">
-                    <div className="relative w-6/12">
-                        <label htmlFor="search">
-                            <Icon
-                                className="searchIcon"
-                                icon="bi:search-heart"
-                            />
-                        </label>
-                        <input
-                            className="inputStyle"
-                            placeholder="Search for anything..."
-                            type="text"
-                            id="search"
-                            name="search"
-                            value={searchTerm}
-                            onChange={onChangeHandler}
-                        />
-                    </div>
-                    <button className="btn" type="submit">
-                        Search
-                    </button>
-                </div>
-            </form>
-
             <div className="countryHeaderDiv">
                 <p className="country-info">Flag Photo</p>
-                <p className="country-info">Country Name & Code</p>
+                <p className="country-info">Country Name</p>
                 <p className="country-info">Capital Name</p>
                 <p className="country-info hidden md:block">
-                    Currencies Name & Symble
+                    Currencies Name
                 </p>
                 <p className="country-info hidden lg:block">Languages</p>
                 <p className="country-info hidden lg:block">Population</p>

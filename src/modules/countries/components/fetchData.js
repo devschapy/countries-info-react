@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Table from "./table.component";
+import SearchInput from "./SearchInput";
 
 const FetchData = () => {
     const [countrys, setCountrys] = useState([]);
@@ -33,9 +34,8 @@ const FetchData = () => {
             console.log(error);
         }
     };
-    if(searchTerm === ''){
+    if (searchTerm === "") {
         fetchCountryList();
-
     }
 
     useEffect(() => {
@@ -43,12 +43,16 @@ const FetchData = () => {
     }, []);
 
     return (
-        <Table
-            countrys={countrys}
-            searchTerm={searchTerm}
-            onChangeHandler={onChangeHandler}
-            submitHandler={submitHandler}
-        />
+        <>
+            <SearchInput 
+                searchTerm={searchTerm}
+                onChangeHandler={onChangeHandler}
+                submitHandler={submitHandler}
+            />
+            <Table
+                countrys={countrys}
+            />
+        </>
     );
 };
 
