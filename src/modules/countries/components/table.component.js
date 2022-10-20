@@ -55,6 +55,7 @@ const Table = ({ countrys }) => {
                             area: country.area,
                             region: country.region,
                             subregion: country.subregion,
+                            altSpellings: country.altSpellings,
 
                         };
 

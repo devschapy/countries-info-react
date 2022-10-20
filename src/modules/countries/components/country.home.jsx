@@ -4,65 +4,78 @@ import { useLocation } from "react-router-dom";
 const CountryHome = () => {
     const location = useLocation();
 
+    const obj = location.state.altSpellings;
+    const nationality = Object.entries(obj);
+    const nationalityVal = nationality[2][1]
+    const nationalityPepol = nationality[1][1]
+
+
+
     return (
         <div className="bg-gray-300 py-4">
             <div className="container">
-                <h1 className="text-4xl font-bold text-center underline py-2">
-                    {location.state.name}
-                </h1>
+                <div className="text-center">
+                    <h1 className="text-4xl font-bold underline py-2">
+                        {location.state.name} (<span>{location.state.cntyCode}</span>)
+                    </h1>
+                    <h2 className="text-2xl font-semibold leading-10">{nationalityPepol}</h2>
+                    <span className="text-xl italic leading-10">{nationalityVal}</span>
+                </div>
                 <img src={location.state.flags} alt="Country PNG" />
 
-                <div className="space-y-3">
-                    <div className="flex">
-                        <h3 className="w-4/12 py-2 text-xl font-bold">Capital</h3>
-                        <p className="w-8/12 bg-gray-200 py-2">{location.state.capital}</p>
+                <div className="space-y-1 bg-slate-200 px-3 py-4 rounded">
+                    <div className="flex bg-slate-300 px-3 rounded">
+                        <div className="w-4/12 py-2">
+                            <p className="text-xl font-bold">Capital</p>
+                            <p>and largest city</p>
+                        </div>
+                        <p className="w-8/12 pl-3 py-2">{location.state.capital}</p>
                     </div>
-                    <div className="flex">
+                    <div className="flex bg-slate-300 px-3 rounded">
                         <h3 className="w-4/12 py-2 text-xl font-bold">Population</h3>
-                        <p className="w-8/12 bg-gray-200 py-2">{location.state.population}</p>
+                        <p className="w-8/12 pl-3 py-2">{location.state.population}</p>
                     </div>
-                    <div className="flex">
+                    <div className="flex bg-slate-300 px-3 rounded">
                         <h3 className="w-4/12 py-2 text-xl font-bold">Area</h3>
-                        <p className="w-8/12 bg-gray-200 py-2">{location.state.area}</p>
+                        <p className="w-8/12 pl-3 py-2">{location.state.area}</p>
                     </div>
-                    <div className="flex">
+                    <div className="flex bg-slate-300 px-3 rounded">
                         <h3 className="w-4/12 py-2 text-xl font-bold">Region</h3>
-                        <p className="w-8/12 bg-gray-200 py-2">{location.state.region}</p>
+                        <p className="w-8/12 pl-3 py-2">{location.state.region}</p>
                     </div>
-                    <div className="flex">
+                    <div className="flex bg-slate-300 px-3 rounded">
                         <h3 className="w-4/12 py-2 text-xl font-bold">Subregion</h3>
-                        <p className="w-8/12 bg-gray-200 py-2">{location.state.subregion}</p>
+                        <p className="w-8/12 pl-3 py-2">{location.state.subregion}</p>
                     </div>
-                    <div className="flex">
-                        <h3 className="w-4/12 py-2 text-xl font-bold">Languages</h3>
-                        <div className="w-8/12 bg-gray-200 py-2">
-                            {/* Dropdown Language  */}
-                            <div className="group inline-block relative">
-                                <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-                                    <span className="mr-1">Country Languages</span>
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /> </svg>
-                                </button>
-                                <div className="group-hover:flex absolute hidden text-gray-700 pt-1">
+                    <div className="flex bg-slate-300 px-3 rounded">
+                        <div className="w-4/12 py-2">
+                            <p className="text-xl font-bold">Official language</p>
+                            <p>and national language</p>
+                        </div>
+                        <div className="w-8/12 pl-3 py-2">
+                            <details className="inline-block px-3 py-2 rounded">
+                                <summary>More Currencies</summary>
+                                <div className="bg-gray-400 py-2 px-3 rounded">
                                     {location.state.langKeys.map((val, index) => (
-                                        <p className="bg-gray-200 hover:bg-gray-300 py-2 px-4"
+                                        <p className="inline-block px-2 py-1 rounded bg-slate-300"
                                             key={index}>
                                             <span>{val}</span>
                                         </p>
                                     ))}
                                 </div>
-                            </div>
+                            </details>
                         </div>
                     </div>
-                    <div className="flex">
+                    <div className="flex bg-slate-300 px-3 rounded">
                         <h3 className="w-4/12 py-2 text-xl font-bold">Currencies Name @ Symbol</h3>
-                        <div className="w-8/12 bg-gray-200 py-2">
-                            <details className="bg-gray-300 inline-block px-3 py-2 rounded">
+                        <div className="w-8/12 pl-3 py-2">
+                            <details className="inline-block px-3 py-2 rounded">
                                 <summary>More Currencies</summary>
-                                <div className="bg-gray-500">
+                                <div className="bg-gray-400 py-2 px-3 rounded">
                                     {location.state.curncKeys.map((val, index) => (
-                                        <div className="flex" key={index}>
+                                        <div className="flex gap-3 py-2 px-2 rounded bg-slate-300" key={index}>
                                             <p>{val.name}</p>
-                                            <p>{val.symbol}</p>
+                                            <p className="bg-green-500 px-3 rounded-md">{val.symbol}</p>
                                         </div>
                                     ))}
                                 </div>
