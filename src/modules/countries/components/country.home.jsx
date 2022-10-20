@@ -14,45 +14,56 @@ const CountryHome = () => {
     return (
         <div className="bg-gray-300 py-4">
             <div className="container">
-                <div className="text-center">
-                    <h1 className="text-4xl font-bold underline py-2">
-                        {location.state.name} (<span>{location.state.cntyCode}</span>)
-                    </h1>
-                    <h2 className="text-2xl font-semibold leading-10">{nationalityPepol}</h2>
-                    <span className="text-xl italic leading-10">{nationalityVal}</span>
-                </div>
-                <img src={location.state.flags} alt="Country PNG" />
+                <h2 className="md:text-2xl sm:hidden text-md text-center font-semibold">{nationalityPepol}</h2>
+                <h3 className="md:text-xl sm:hidden text-center text-md italic">{nationalityVal}</h3>
+                <div className="flex justify-between border-b py-4 border-gray-400">
+                    <div className="md:w-4/12">
+                        <img className="w-20" src={location.state.flags} alt="Country PNG" />
+                    </div>
 
-                <div className="space-y-1 bg-slate-200 px-3 py-4 rounded">
+                    <div className="text-center md:w-4/12">
+                        <h1 className="lg:text-2xl text-lg font-bold underline">
+                            {location.state.name} (<span>{location.state.cntyCode}</span>)
+                        </h1>
+                        <h2 className="lg:text-xl hidden sm:block text-md font-semibold">{nationalityPepol}</h2>
+                        <span className="lg:text-lg hidden sm:block text-sm italic">{nationalityVal}</span>
+                    </div>
+
+                    <div className="md:w-4/12 relative">
+                        <img className="w-20 md:absolute right-0" src={location.state.coatOfArms} alt="" />
+                    </div>
+                </div>
+
+                <div className="space-y-1 bg-slate-200 px-3 py-4 mt-5 rounded">
                     <div className="flex bg-slate-300 px-3 rounded">
-                        <div className="w-4/12 py-2">
+                        <div className="md:w-4/12 w-6/12 py-2">
                             <p className="text-xl font-bold">Capital</p>
                             <p>and largest city</p>
                         </div>
-                        <p className="w-8/12 pl-3 py-2">{location.state.capital}</p>
+                        <p className="w-6/12 md:w-8/12 pl-3 py-2">{location.state.capital}</p>
                     </div>
                     <div className="flex bg-slate-300 px-3 rounded">
-                        <h3 className="w-4/12 py-2 text-xl font-bold">Population</h3>
-                        <p className="w-8/12 pl-3 py-2">{location.state.population}</p>
+                        <h3 className="md:w-4/12 w-6/12 py-2 text-xl font-bold">Population</h3>
+                        <p className="w-6/12 md:w-8/12 pl-3 py-2">{location.state.population}</p>
                     </div>
                     <div className="flex bg-slate-300 px-3 rounded">
-                        <h3 className="w-4/12 py-2 text-xl font-bold">Area</h3>
-                        <p className="w-8/12 pl-3 py-2">{location.state.area}</p>
+                        <h3 className="md:w-4/12 w-6/12 py-2 text-xl font-bold">Area</h3>
+                        <p className="w-6/12 md:w-8/12 pl-3 py-2">{location.state.area}</p>
                     </div>
                     <div className="flex bg-slate-300 px-3 rounded">
-                        <h3 className="w-4/12 py-2 text-xl font-bold">Region</h3>
-                        <p className="w-8/12 pl-3 py-2">{location.state.region}</p>
+                        <h3 className="md:w-4/12 w-6/12 py-2 text-xl font-bold">Region</h3>
+                        <p className="w-6/12 md:w-8/12 pl-3 py-2">{location.state.region}</p>
                     </div>
                     <div className="flex bg-slate-300 px-3 rounded">
-                        <h3 className="w-4/12 py-2 text-xl font-bold">Subregion</h3>
-                        <p className="w-8/12 pl-3 py-2">{location.state.subregion}</p>
+                        <h3 className="md:w-4/12 w-6/12 py-2 text-xl font-bold">Subregion</h3>
+                        <p className="w-6/12 md:w-8/12 pl-3 py-2">{location.state.subregion}</p>
                     </div>
                     <div className="flex bg-slate-300 px-3 rounded">
-                        <div className="w-4/12 py-2">
+                        <div className="md:w-4/12 w-6/12 py-2">
                             <p className="text-xl font-bold">Official language</p>
                             <p>and national language</p>
                         </div>
-                        <div className="w-8/12 pl-3 py-2">
+                        <div className="w-6/12 md:w-8/12 pl-3 py-2">
                             <details className="inline-block px-3 py-2 rounded">
                                 <summary>More Currencies</summary>
                                 <div className="bg-gray-400 py-2 px-3 rounded">
@@ -67,8 +78,8 @@ const CountryHome = () => {
                         </div>
                     </div>
                     <div className="flex bg-slate-300 px-3 rounded">
-                        <h3 className="w-4/12 py-2 text-xl font-bold">Currencies Name @ Symbol</h3>
-                        <div className="w-8/12 pl-3 py-2">
+                        <h3 className="md:w-4/12 w-6/12 py-2 text-xl font-bold">Currencies Name @ Symbol</h3>
+                        <div className="w-6/12 md:w-8/12 pl-3 py-2">
                             <details className="inline-block px-3 py-2 rounded">
                                 <summary>More Currencies</summary>
                                 <div className="bg-gray-400 py-2 px-3 rounded">

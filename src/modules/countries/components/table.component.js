@@ -56,6 +56,7 @@ const Table = ({ countrys }) => {
                             region: country.region,
                             subregion: country.subregion,
                             altSpellings: country.altSpellings,
+                            coatOfArms: country.coatOfArms.png,
 
                         };
 
