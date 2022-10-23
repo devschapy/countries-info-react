@@ -13,6 +13,7 @@ const FetchData = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        /* eslint-disable */
         const newFilterCountryItem = countrys.filter((val) => {
             if (searchTerm === "") {
                 return val;
@@ -44,14 +45,12 @@ const FetchData = () => {
 
     return (
         <>
-            <SearchInput 
+            <SearchInput
                 searchTerm={searchTerm}
                 onChangeHandler={onChangeHandler}
                 submitHandler={submitHandler}
             />
-            <Table
-                countrys={countrys}
-            />
+            <Table countrys={countrys} />
         </>
     );
 };

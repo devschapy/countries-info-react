@@ -10,7 +10,6 @@ const CountryHome = () => {
     const nationalityPepol = nationality[1][1]
 
 
-
     return (
         <div className="bg-gray-300 py-4">
             <div className="container">
@@ -42,6 +41,40 @@ const CountryHome = () => {
                         </div>
                         <p className="w-6/12 md:w-8/12 pl-3 py-2">{location.state.capital}</p>
                     </div>
+
+                    <div className="flex bg-slate-300 px-3 rounded">
+                        <div className="md:w-4/12 w-6/12 py-2">
+                            <p className="text-xl font-bold">Car Driving</p>
+                            <p>Side & Signs</p>
+                        </div>
+                        <div className="w-6/12 md:w-8/12 pl-3 py-2">
+
+
+
+                            <details className="inline-block px-3 py-2 rounded relative">
+                                <summary>Driving Side</summary>
+                                <div className="bg-gray-400 py-2 px-3 rounded absolute">
+                                    <p>{location.state.car.side}</p>
+                                </div>
+                            </details>
+                            <details className="inline-block px-3 py-2 rounded relative">
+                                <summary>Car Signs</summary>
+                                <div className="bg-gray-400 py-2 px-3 rounded absolute">
+                                    {location.state.car.signs.map((itm, idx) => (
+                                        <div key={idx}>
+                                            <p>{itm}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </details>
+
+
+
+
+
+                        </div>
+                    </div>
+
                     <div className="flex bg-slate-300 px-3 rounded">
                         <h3 className="md:w-4/12 w-6/12 py-2 text-xl font-bold">Population</h3>
                         <p className="w-6/12 md:w-8/12 pl-3 py-2">{location.state.population}</p>
